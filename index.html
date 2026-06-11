@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureLogin - Secure Authentication System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: #f1f5f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo svg {
+            width: 60px;
+            height: 60px;
+            color: #3b82f6;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #475569;
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #475569;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .demo-section h2 {
+            margin-bottom: 1.5rem;
+            color: #f1f5f9;
+        }
+
+        .demo-credentials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .credential {
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .credential-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .credential-value {
+            font-family: monospace;
+            color: #93c5fd;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #475569;
+            color: #64748b;
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #6ee7b7;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M 35 50 L 45 60 L 65 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h1>SecureLogin</h1>
+            </div>
+            <p>Professional Web-Based Authentication System</p>
+            
+            <!-- CTA Buttons -->
+            <div class="cta-buttons">
+                <a href="login.html" class="btn btn-primary">
+                    <span>🚀</span>
+                    <span>Sign In</span>
+                </a>
+                <a href="register.html" class="btn btn-secondary">
+                    <span>✨</span>
+                    <span>Create Account</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure Authentication</h3>
+                <p>Industry-standard bcrypt password hashing with rate limiting and brute-force protection</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Responsive Design</h3>
+                <p>Seamlessly works on desktop, tablet, and mobile devices with optimized UX</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>High Performance</h3>
+                <p>Optimized code and caching for lightning-fast load times and smooth interactions</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Modern UI/UX</h3>
+                <p>Beautiful gradient design with smooth animations and intuitive user interface</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">♿</div>
+                <h3>Accessible</h3>
+                <p>WCAG compliant with keyboard navigation, screen reader support, and focus indicators</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Data Protection</h3>
+                <p>XSS prevention, CSRF protection, secure session management, and security headers</p>
+            </div>
+        </section>
+
+        <!-- Demo Section -->
+        <section class="demo-section">
+            <h2>🎯 Test Drive with Demo Credentials</h2>
+            <p style="margin-bottom: 1.5rem; color: #cbd5e1;">
+                Try the application with one of these test accounts. No real account creation required for demo.
+            </p>
+            
+            <div class="demo-credentials">
+                <div class="credential">
+                    <div class="credential-label">Administrator</div>
+                    <div class="credential-value">admin</div>
+                    <div class="credential-label">Password</div>
+                    <div class="credential-value">Admin@123</div>
+                </div>
+
+                <div class="credential">
+                    <div class="credential-label">User Account 1</div>
+                    <div class="credential-value">john_doe</div>
+                    <div class="credential-label">Password</div>
+                    <div class="credential-value">John@123</div>
+                </div>
+
+                <div class="credential">
+                    <div class="credential-label">User Account 2</div>
+                    <div class="credential-value">jane_smith</div>
+                    <div class="credential-label">Password</div>
+                    <div class="credential-value">Jane@123</div>
+                </div>
+            </div>
+
+            <a href="login.html" class="btn btn-primary">
+                <span>▶️</span>
+                <span>Try Login Demo</span>
+            </a>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="demo-section">
+            <h2>🛠️ Technology Stack</h2>
+            <p style="margin-bottom: 1rem; color: #cbd5e1;">
+                Built with modern web technologies for security, performance, and maintainability.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div style="padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.3);">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Frontend</div>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">HTML5, CSS3, Vanilla JavaScript</div>
+                </div>
+                <div style="padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.3);">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Backend</div>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">PHP 7.4+, Bcrypt, Sessions</div>
+                </div>
+                <div style="padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.3);">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Database</div>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">MySQL/PostgreSQL (Production)</div>
+                </div>
+                <div style="padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.3);">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Security</div>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">HTTPS, Security Headers, Validation</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start -->
+        <section class="demo-section">
+            <h2>🚀 Quick Start</h2>
+            <ol style="padding-left: 1.5rem; color: #cbd5e1; line-height: 1.8;">
+                <li>Extract the application files to your web server directory</li>
+                <li>Start your PHP server (Apache, Nginx, or built-in server)</li>
+                <li>Open <code style="background: rgba(0,0,0,0.3); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">index.html</code> in your browser</li>
+                <li>Click "Sign In" and use demo credentials to test</li>
+                <li>Click "Create Account" to register a new user</li>
+            </ol>
+            <p style="margin-top: 1.5rem; color: #cbd5e1; font-size: 0.9rem;">
+                For detailed setup instructions, see <strong>INSTALLATION.md</strong> in the documentation folder.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 SecureLogin. All rights reserved.</p>
+            <p style="margin-top: 1rem; font-size: 0.875rem;">
+                <span class="security-badge">✓ Production-Ready</span>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
