@@ -1,374 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureLogin - Secure Authentication System</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            min-height: 100vh;
-            color: #f1f5f9;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        header {
-            text-align: center;
-            padding: 3rem 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .logo svg {
-            width: 60px;
-            height: 60px;
-            color: #3b82f6;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1.25rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 4rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #3b82f6;
-            border: 2px solid #3b82f6;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(37, 99, 235, 0.1);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .feature-card {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid #475569;
-            border-radius: 1rem;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: #f1f5f9;
-        }
-
-        .feature-card p {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .demo-section {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid #475569;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .demo-section h2 {
-            margin-bottom: 1.5rem;
-            color: #f1f5f9;
-        }
-
-        .demo-credentials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .credential {
-            background: rgba(37, 99, 235, 0.1);
-            border: 1px solid rgba(37, 99, 235, 0.3);
-            border-radius: 0.5rem;
-            padding: 1rem;
-        }
-
-        .credential-label {
-            font-size: 0.8rem;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .credential-value {
-            font-family: monospace;
-            color: #93c5fd;
-            font-weight: 600;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid #475569;
-            color: #64748b;
-        }
-
-        .security-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            color: #6ee7b7;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SecureLogin — Authentication</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="logo">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 35 50 L 45 60 L 65 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <h1>SecureLogin</h1>
+
+  <!-- Animated background blobs -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <main class="page-wrapper">
+
+    <!-- Left decorative panel -->
+    <aside class="hero-panel" aria-hidden="true">
+      <div class="hero-content">
+        <div class="hero-logo">⬡</div>
+        <h1 class="hero-title">Secure<br/>Access.</h1>
+        <p class="hero-tagline">Your gateway to a protected workspace. Every session is encrypted end-to-end.</p>
+        <ul class="feature-list">
+          <li><span class="feat-icon">✦</span> Real-time input validation</li>
+          <li><span class="feat-icon">✦</span> PHP session management</li>
+          <li><span class="feat-icon">✦</span> Password strength indicator</li>
+          <li><span class="feat-icon">✦</span> Brute-force protection</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Login card -->
+    <section class="login-section">
+      <div class="login-card" role="main">
+
+        <div class="card-header">
+          <div class="card-logo" aria-label="SecureLogin logo">SL</div>
+          <h2 class="card-title">Welcome back</h2>
+          <p class="card-sub">Sign in to your account to continue</p>
+        </div>
+
+        <!-- Flash messages (shown by PHP redirect or JS) -->
+        <div id="flash-message" class="flash-message" role="alert" aria-live="polite" hidden></div>
+
+        <!-- Login Form -->
+        <form id="loginForm" action="php/login.php" method="POST" novalidate autocomplete="off">
+          <input type="hidden" name="csrf_token" id="csrfToken" value=""/>
+
+          <!-- Username -->
+          <div class="field-group" id="usernameGroup">
+            <label for="username" class="field-label">Username</label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              </span>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="field-input"
+                placeholder="Enter your username"
+                autocomplete="username"
+                maxlength="50"
+                aria-required="true"
+                aria-describedby="usernameHelp usernameError"
+              />
+              <span class="field-status" id="usernameStatus" aria-hidden="true"></span>
             </div>
-            <p>Professional Web-Based Authentication System</p>
-            
-            <!-- CTA Buttons -->
-            <div class="cta-buttons">
-                <a href="login.html" class="btn btn-primary">
-                    <span>🚀</span>
-                    <span>Sign In</span>
-                </a>
-                <a href="register.html" class="btn btn-secondary">
-                    <span>✨</span>
-                    <span>Create Account</span>
-                </a>
+            <span class="field-hint" id="usernameHelp">3–50 characters, letters, numbers, underscores only</span>
+            <span class="field-error" id="usernameError" role="alert" aria-live="polite"></span>
+          </div>
+
+          <!-- Password -->
+          <div class="field-group" id="passwordGroup">
+            <label for="password" class="field-label">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="field-input"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                maxlength="128"
+                aria-required="true"
+                aria-describedby="passwordStrength passwordError"
+              />
+              <button type="button" class="toggle-pw" id="togglePw" aria-label="Toggle password visibility" aria-pressed="false">
+                <svg class="eye-icon eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-icon eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22"/></svg>
+              </button>
             </div>
-        </header>
-
-        <!-- Features Section -->
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Secure Authentication</h3>
-                <p>Industry-standard bcrypt password hashing with rate limiting and brute-force protection</p>
+            <!-- Password strength bar -->
+            <div class="strength-bar-wrap" id="strengthWrap" aria-hidden="true">
+              <div class="strength-bar" id="strengthBar"></div>
             </div>
+            <span class="field-hint" id="passwordStrength"></span>
+            <span class="field-error" id="passwordError" role="alert" aria-live="polite"></span>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>Responsive Design</h3>
-                <p>Seamlessly works on desktop, tablet, and mobile devices with optimized UX</p>
-            </div>
+          <!-- Remember me -->
+          <div class="check-row">
+            <label class="check-label">
+              <input type="checkbox" name="remember_me" id="rememberMe" class="check-input"/>
+              <span class="check-box" aria-hidden="true"></span>
+              Remember me for 30 days
+            </label>
+            <a href="php/forgot.php" class="forgot-link">Forgot password?</a>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>High Performance</h3>
-                <p>Optimized code and caching for lightning-fast load times and smooth interactions</p>
-            </div>
+          <!-- Buttons -->
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <span class="btn-text">Sign In</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+            <button type="reset" class="btn btn-ghost" id="resetBtn">
+              Cancel
+            </button>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🎨</div>
-                <h3>Modern UI/UX</h3>
-                <p>Beautiful gradient design with smooth animations and intuitive user interface</p>
-            </div>
+        </form>
 
-            <div class="feature-card">
-                <div class="feature-icon">♿</div>
-                <h3>Accessible</h3>
-                <p>WCAG compliant with keyboard navigation, screen reader support, and focus indicators</p>
-            </div>
+        <div class="card-footer">
+          <p>Don't have an account? <a href="register.html" class="link-accent">Create one</a></p>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>Data Protection</h3>
-                <p>XSS prevention, CSRF protection, secure session management, and security headers</p>
-            </div>
-        </section>
+        <!-- Demo credentials notice 
+        <div class="demo-box">
+          <strong>Demo credentials</strong>
+          <code>admin / Admin@1234</code>
+          <code>user1 / User@5678</code>
+        </div>
+-->
+      </div>
+    </section>
 
-        <!-- Demo Section -->
-        <section class="demo-section">
-            <h2>🎯 Test Drive with Demo Credentials</h2>
-            <p style="margin-bottom: 1.5rem; color: #cbd5e1;">
-                Try the application with one of these test accounts. No real account creation required for demo.
-            </p>
-            
-            <div class="demo-credentials">
-                <div class="credential">
-                    <div class="credential-label">Administrator</div>
-                    <div class="credential-value">admin</div>
-                    <div class="credential-label">Password</div>
-                    <div class="credential-value">Admin@123</div>
-                </div>
+  </main>
 
-                <div class="credential">
-                    <div class="credential-label">User Account 1</div>
-                    <div class="credential-value">john_doe</div>
-                    <div class="credential-label">Password</div>
-                    <div class="credential-value">John@123</div>
-                </div>
-
-                <div class="credential">
-                    <div class="credential-label">User Account 2</div>
-                    <div class="credential-value">jane_smith</div>
-                    <div class="credential-label">Password</div>
-                    <div class="credential-value">Jane@123</div>
-                </div>
-            </div>
-
-            <a href="login.html" class="btn btn-primary">
-                <span>▶️</span>
-                <span>Try Login Demo</span>
-            </a>
-        </section>
-
-        <!-- Technology Stack -->
-        <section class="demo-section">
-            <h2>🛠️ Technology Stack</h2>
-            <p style="margin-bottom: 1rem; color: #cbd5e1;">
-                Built with modern web technologies for security, performance, and maintainability.
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                <div style="padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.3);">
-                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Frontend</div>
-                    <div style="font-size: 0.9rem; color: #cbd5e1;">HTML5, CSS3, Vanilla JavaScript</div>
-                </div>
-                <div style="padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.3);">
-                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Backend</div>
-                    <div style="font-size: 0.9rem; color: #cbd5e1;">PHP 7.4+, Bcrypt, Sessions</div>
-                </div>
-                <div style="padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.3);">
-                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Database</div>
-                    <div style="font-size: 0.9rem; color: #cbd5e1;">MySQL/PostgreSQL (Production)</div>
-                </div>
-                <div style="padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.3);">
-                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Security</div>
-                    <div style="font-size: 0.9rem; color: #cbd5e1;">HTTPS, Security Headers, Validation</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Start -->
-        <section class="demo-section">
-            <h2>🚀 Quick Start</h2>
-            <ol style="padding-left: 1.5rem; color: #cbd5e1; line-height: 1.8;">
-                <li>Extract the application files to your web server directory</li>
-                <li>Start your PHP server (Apache, Nginx, or built-in server)</li>
-                <li>Open <code style="background: rgba(0,0,0,0.3); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">index.html</code> in your browser</li>
-                <li>Click "Sign In" and use demo credentials to test</li>
-                <li>Click "Create Account" to register a new user</li>
-            </ol>
-            <p style="margin-top: 1.5rem; color: #cbd5e1; font-size: 0.9rem;">
-                For detailed setup instructions, see <strong>INSTALLATION.md</strong> in the documentation folder.
-            </p>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2024 SecureLogin. All rights reserved.</p>
-            <p style="margin-top: 1rem; font-size: 0.875rem;">
-                <span class="security-badge">✓ Production-Ready</span>
-            </p>
-        </footer>
-    </div>
+  <script src="js/validate.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

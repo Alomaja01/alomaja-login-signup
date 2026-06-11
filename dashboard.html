@@ -1,397 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard -Prof.Ajayi Login</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            min-height: 100vh;
-            color: #f1f5f9;
-            padding: 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #475569;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logout-btn {
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            border: none;
-            border-radius: 0.5rem;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
-        }
-
-        .welcome-section {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid #475569;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .welcome-section h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #cbd5e1;
-        }
-
-        .user-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .info-card {
-            background: rgba(37, 99, 235, 0.1);
-            border: 1px solid rgba(37, 99, 235, 0.3);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .info-card:hover {
-            border-color: rgba(37, 99, 235, 0.6);
-            background: rgba(37, 99, 235, 0.15);
-        }
-
-        .info-label {
-            font-size: 0.875rem;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .info-value {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #f1f5f9;
-        }
-
-        .content-section {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid #475569;
-            border-radius: 1rem;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .content-section h2 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: #cbd5e1;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .feature-item {
-            background: rgba(37, 99, 235, 0.05);
-            border: 1px solid rgba(37, 99, 235, 0.2);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            border-color: rgba(37, 99, 235, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-name {
-            font-weight: 600;
-            color: #cbd5e1;
-            font-size: 0.9rem;
-        }
-
-        .alert {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-left: 4px solid #10b981;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            color: #6ee7b7;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #475569;
-            color: #64748b;
-            font-size: 0.875rem;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .logout-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            .welcome-section h2 {
-                font-size: 1.25rem;
-            }
-
-            .user-info {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — SecureLogin</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
 </head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Prof.Ajayi SecureLogin Dashboard</h1>
-            <button class="logout-btn" id="logoutBtn">
-                <span>🚪</span>
-                <span>Logout</span>
-            </button>
-        </header>
+<body class="dashboard-body">
 
-        <!-- Welcome Message -->
-        <div class="alert" id="welcomeAlert"></div>
+  <div class="dash-wrapper">
 
-        <!-- User Information Section -->
-        <div class="welcome-section">
-            <h2>👤 Your Profile</h2>
-            <div class="user-info" id="userInfo">
-                <div class="info-card">
-                    <div class="info-label">Username</div>
-                    <div class="info-value" id="usernameDisplay">Loading...</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Email</div>
-                    <div class="info-value" id="emailDisplay">Loading...</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Full Name</div>
-                    <div class="info-value" id="nameDisplay">Loading...</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Login Time</div>
-                    <div class="info-value" id="loginTimeDisplay">Loading...</div>
-                </div>
-            </div>
+    <header class="dash-header">
+      <div class="dash-brand">
+        <div class="card-logo small">SL</div>
+        <span>SecureLogin</span>
+      </div>
+      <div class="dash-user-area">
+        <div class="dash-avatar" id="dashAvatar"></div>
+        <span class="dash-username" id="dashUsername">Loading...</span>
+        <a href="php/logout.php" class="btn btn-ghost btn-sm">Sign Out</a>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="dash-hero">
+        <h1 class="dash-greeting" id="dashGreeting">Welcome!</h1>
+        <p class="dash-sub">You have successfully authenticated. Your session is active and secure.</p>
+      </div>
+
+      <div class="dash-cards">
+        <div class="dash-card">
+          <div class="dc-icon">🔐</div>
+          <div class="dc-label">Session Status</div>
+          <div class="dc-value success">Active</div>
         </div>
-
-        <!-- Features Section -->
-        <div class="content-section" style="margin-top: 2rem;">
-            <h2>✨ Available Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">🔐</div>
-                    <div class="feature-name">Secure Authentication</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-name">Responsive Design</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <div class="feature-name">Fast Loading</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎨</div>
-                    <div class="feature-name">Modern UI</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🛡️</div>
-                    <div class="feature-name">Data Protection</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">⚙️</div>
-                    <div class="feature-name">Easy to Customize</div>
-                </div>
-            </div>
+        <div class="dash-card">
+          <div class="dc-icon">🕒</div>
+          <div class="dc-label">Logged In At</div>
+          <div class="dc-value" id="loginTime">—</div>
         </div>
+        <div class="dash-card">
+          <div class="dc-icon">🌐</div>
+          <div class="dc-label">IP Address</div>
+          <div class="dc-value" id="clientIP">—</div>
+        </div>
+        <div class="dash-card">
+          <div class="dc-icon">🛡️</div>
+          <div class="dc-label">Auth Method</div>
+          <div class="dc-value">PHP Session</div>
+        </div>
+      </div>
 
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2024 SecureLogin. All rights reserved. | Last updated: <span id="currentDate"></span></p>
-        </footer>
-    </div>
+      <div class="dash-notice">
+        <strong>ℹ️ This is a demo dashboard.</strong>
+        In a real application, your protected content and features would appear here.
+        <a href="php/logout.php" class="link-accent">Sign out</a> when done.
+      </div>
+    </main>
 
-    <script>
-        /**
-         * Dashboard Script
-         * Displays user information and handles logout
-         */
+  </div>
 
-        // ===================================
-        // INITIALIZATION
-        // ===================================
-        document.addEventListener('DOMContentLoaded', () => {
-            displayUserInformation();
-            setupLogout();
-            updateDateTime();
-        });
+  <script>
+    // Read session data injected by PHP or fallback to sessionStorage
+    const username = document.querySelector('meta[name="auth-user"]')?.content
+                     || sessionStorage.getItem('auth_user')
+                     || 'User';
+    const loginTime = sessionStorage.getItem('auth_time') || new Date().toLocaleTimeString();
+    const ip = document.querySelector('meta[name="client-ip"]')?.content || '—';
 
-        // ===================================
-        // DISPLAY USER INFORMATION
-        // ===================================
-        function displayUserInformation() {
-            // Get user data from session (via cookie or from PHP)
-            // In a real app, this would come from a PHP endpoint
-            
-            // For demo, we'll create sample data
-            const userData = {
-                username: 'admin',
-                email: 'admin@example.com',
-                name: 'Administrator User',
-                loginTime: new Date().toLocaleString()
-            };
-
-            // Update DOM with user information
-            document.getElementById('usernameDisplay').textContent = userData.username || 'Unknown';
-            document.getElementById('emailDisplay').textContent = userData.email || 'Not provided';
-            document.getElementById('nameDisplay').textContent = userData.name || 'User';
-            document.getElementById('loginTimeDisplay').textContent = userData.loginTime;
-
-            // Update welcome message
-            const welcomeMsg = `Welcome back, <strong>${userData.name}</strong>! You are successfully logged in.`;
-            document.getElementById('welcomeAlert').innerHTML = welcomeMsg;
-        }
-
-        // ===================================
-        // LOGOUT FUNCTIONALITY
-        // ===================================
-        function setupLogout() {
-            const logoutBtn = document.getElementById('logoutBtn');
-            logoutBtn.addEventListener('click', handleLogout);
-        }
-
-        async function handleLogout() {
-            // Confirm logout
-            if (!confirm('Are you sure you want to logout?')) {
-                return;
-            }
-
-            try {
-                // Show loading state
-                const logoutBtn = document.getElementById('logoutBtn');
-                const originalText = logoutBtn.innerHTML;
-                logoutBtn.disabled = true;
-                logoutBtn.innerHTML = '<span>⏳</span><span>Logging out...</span>';
-
-                // Call logout endpoint
-                const response = await fetch('logout.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    // Redirect to login page
-                    setTimeout(() => {
-                        window.location.href = 'login.html';
-                    }, 500);
-                } else {
-                    throw new Error('Logout failed');
-                }
-            } catch (error) {
-                console.error('Logout error:', error);
-                alert('Error during logout. Please try again.');
-                logoutBtn.disabled = false;
-                logoutBtn.innerHTML = originalText;
-            }
-        }
-
-        // ===================================
-        // UTILITY FUNCTIONS
-        // ===================================
-        function updateDateTime() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric'
-            };
-            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
-        }
-
-        // ===================================
-        // PAGE VISIBILITY & SESSION CHECK
-        // ===================================
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-                // Page is now visible - could verify session is still active
-                console.log('Dashboard visible');
-            }
-        });
-
-        // Optional: Warn before unload if there are unsaved changes
-        window.addEventListener('beforeunload', (event) => {
-            // Only warn if user initiated navigation
-            if (event.type === 'beforeunload') {
-                // Uncomment to show warning
-                // event.preventDefault();
-                // event.returnValue = '';
-            }
-        });
-    </script>
+    document.getElementById('dashUsername').textContent = username;
+    document.getElementById('dashGreeting').textContent = `Welcome back, ${username}!`;
+    document.getElementById('dashAvatar').textContent = username.charAt(0).toUpperCase();
+    document.getElementById('loginTime').textContent = loginTime;
+    document.getElementById('clientIP').textContent = ip;
+    document.getElementById('loginTime').textContent = new Date().toLocaleString();
+  </script>
 </body>
 </html>
